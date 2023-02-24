@@ -3,19 +3,35 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const math = require('remark-math');
+const katex = require('rehype-katex');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Hamel's Notes",
-  tagline: "Notes from Hamel",
-  url: 'https://notes.hamel.dev',
-  baseUrl: '/',
+  title: "Nikhil's Notes",
+  tagline: 'Random musings',
+  url: 'https://shenoynikhil.vercel.app/',
+  baseUrl: '/notes',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'hamelsmu', // Usually your GitHub org/user name.
+
+  // GitHub pages deployment config.
+  // If you aren't using GitHub pages, you don't need these.
+  organizationName: 'shenoynikhil', // Usually your GitHub org/user name.
   projectName: 'notes', // Usually your repo name.
-  plugins: [],
+
+  // Even if you don't use internalization, you can use this field to set useful
+  // metadata like html lang. For example, if your site is Chinese, you may want
+  // to replace "en" with "zh-Hans".
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en'],
+  },
+
+  // live coding block
+  themes: ['@docusaurus/theme-live-codeblock'],
+
   presets: [
     [
       'classic',
@@ -24,8 +40,9 @@ const config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl: 'https://github.dev/hamelsmu/notes/blob/master/',
+          editUrl: 'https://github.com/shenoynikhil/notes',
+          remarkPlugins: [math],
+          rehypePlugins: [katex],          
         },
         blog: false,
         theme: {
@@ -42,52 +59,49 @@ const config = {
         defaultMode: 'dark', 
         respectPrefersColorScheme: true,
       },
-      tableOfContents: {
-        minHeadingLevel: 2,
-        maxHeadingLevel: 5,
-      },
-      image: 'img/magician_ds.png',
-      algolia: {
-        // The application ID provided by Algolia
-        appId: 'RAKQU13XWU',
-        // Public API key: it is safe to commit it
-        apiKey: 'bf306a105114621a6cd0a3b66a0d721d',
-        indexName: 'hamel',
-        searchPagePath: 'search',
-      },
       navbar: {
         title: 'Notes',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
         },
-        items: [
+        items: [          
         ],
       },
       footer: {
         style: 'dark',
         links: [
           {
-            title: 'Get In Touch',
+            title: 'Get in touch',
             items: [
               {
                 label: 'Twitter',
-                to: 'https://twitter.com/HamelHusain',
-              },
+                to: 'https://twitter.com/NikhilShenoy12',
+              },              
               {
-                label: 'About Hamel',
-                to: 'https://hamel.dev',
+                label: 'About me',
+                to: 'https://shenoynikhil.vercel.app/',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Hamel Husain`,
+        copyright: `Copyright © ${new Date().getFullYear()} Nikhil Shenoy.`,
       },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
     }),
+
+    stylesheets: [
+      {
+        href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
+        type: 'text/css',
+        integrity:
+          'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
+        crossorigin: 'anonymous',
+      },
+    ],    
 };
 
 module.exports = config;
