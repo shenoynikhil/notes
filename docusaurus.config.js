@@ -9,7 +9,7 @@ const katex = require('rehype-katex');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Nikhil's Notes",
-  tagline: 'Random musings',
+  tagline: 'Random notes',
   url: 'https://shenoynikhil.vercel.app/',
   baseUrl: '/notes',
   onBrokenLinks: 'throw',
